@@ -32,9 +32,9 @@ xhr.onload = function () {
                 <td>${student.sGrade}</td>
                 
                 <td>
-                    <button onclick="onEdit(this)" class="btn btn-primary"> Edit </button>
+                    <button onclick="onEdit(this)" class="btn btn-outline-primary"> Edit </button>
             
-                    <button onclick="onDelete(this)" class="btn btn-danger"> Delete </button>
+                    <button onclick="onDelete(this)" class="btn btn-outline-danger"> Delete </button>
                 </td>
             </tr>
         `;
