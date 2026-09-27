@@ -7,12 +7,26 @@ const sCourse = document.getElementById("sCourse")
 const sGrade = document.getElementById("sGrade")
 const addbtn = document.getElementById("addbtn")
 const cancelbtn = document.getElementById("cancelbtn")
+const spinner = document.getElementById("spinner")
 
 
 const BASE_URL ="https://student-e9277-default-rtdb.asia-southeast1.firebasedatabase.app"
 
 
 const STUDENT_URL =`${BASE_URL}/students.json`
+
+
+function hidespinner() {
+    spinner.classList.add("d-none")
+}
+
+
+function showspinner() {
+    spinner.classList.remove("d-none")
+}
+
+ 
+
 
 let xhr = new XMLHttpRequest();
 xhr.open("GET", STUDENT_URL)
