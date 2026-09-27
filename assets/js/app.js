@@ -43,6 +43,46 @@ xhr.onload = function () {
 }
 
 
+function onDelete(ele){
+    let DELETE_ID = ele.closest('tr').id;
+
+     Swal.fire({
+        title: `Are you sure, you want to remove student with id ${DELETE_ID}?`,
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed){
+
+            spinner.classList.remove('d-none')
+            
+            let DELETE_URL = `${BASE_URL}/students/${DELETE_ID}.json`;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("DELETE", DELETE_URL);
+
+            xhr.send(null);
+
+            xhr.onload = function(){
+                if(xhr.status >= 200 && xhr.status <= 299){
+                let res = JSON.parse(xhr.response);
+                ele.closest('tr').remove();
+
+                snackBar(`the student with id ${DELETE_ID} is Removed successfully !!!`, 'success')
+            }else {
+                cl("Something went wrong while deleting !!!");
+            }
+            spinner.classList.add('d-none');
+            }
+                xhr.onerror = function (){
+                     spinner.classList.add('d-none');
+                 }
+        }
+    })
+}
 
 function onCreate(eve){
     eve.preventDefault();
