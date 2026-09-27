@@ -14,3 +14,31 @@ const BASE_URL ="https://student-e9277-default-rtdb.asia-southeast1.firebasedata
 
 const STUDENT_URL =`${BASE_URL}/students.json`
 
+let xhr = new XMLHttpRequest();
+xhr.open("get", STUDENT_URL)
+xhr.send()
+xhr.onload = function () {
+    let data = JSON.parse(xhr.response);
+
+    let result = ``;
+
+    for (let key in data) {
+        let student = data[key];
+
+        result += `
+            <tr id="${key}">
+                <td>${student.sName}</td>
+                <td>${student.sCourse}</td>
+                <td>${student.sGrade}</td>
+                
+                <td>
+                    <button onclick="onEdit(this)" class="btn btn-primary"> Edit </button>
+            
+                    <button onclick="onDelete(this)" class="btn btn-danger"> Delete </button>
+                </td>
+            </tr>
+        `;
+    }
+    table.innerHTML = result;
+}
+
