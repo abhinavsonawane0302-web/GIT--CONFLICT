@@ -42,3 +42,53 @@ xhr.onload = function () {
     table.innerHTML = result;
 }
 
+
+
+function onCreate(eve){
+    eve.preventDefault();
+
+    const stdObj ={
+        sName: sName.value,
+        sCourse: sCourse.value,
+        sGrade: sGrade.value
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", STUDENT_URL)
+    xhr.send(JSON.stringify(stdObj));
+
+    xhr.onload = () => {
+        let res = JSON.parse(xhr.response)
+
+        if(xhr.status >= 200 && xhr.status <= 299){
+            let createtr = document.createElement("tr")
+            createtr.id = res.id
+            createtr.innerHTML = `<tr>
+
+                        <td>${stdObj.sName}</td>
+                        <td>${stdObj.sCourse}</td>
+                        <td>${stdObj.sGrade}</td>
+                        <td><button class="btn btn-sm btn-outline-primary text-dark">EDIT</button>
+                            <button class="btn btn-sm btn-outline-danger text-dark">DELETE</button>
+                        </td>
+
+                        </tr>`
+        
+
+        table.prepend(createtr)
+        form.reset()
+
+
+        Swal.fire({
+            text:"your data added successfully !!!",
+            icon:"success",
+            timer:2000
+        })
+    }else{
+        cl(`something went wrong while get data !!!`)
+    } 
+
+  }
+}
+
+form.addEventListener("submit", onCreate)
