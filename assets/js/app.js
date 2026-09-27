@@ -15,8 +15,8 @@ const BASE_URL ="https://student-e9277-default-rtdb.asia-southeast1.firebasedata
 const STUDENT_URL =`${BASE_URL}/students.json`
 
 let xhr = new XMLHttpRequest();
-xhr.open("get", STUDENT_URL)
-xhr.send()
+xhr.open("GET", STUDENT_URL)
+xhr.send(null)
 xhr.onload = function () {
     let data = JSON.parse(xhr.response);
 
