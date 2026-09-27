@@ -6,7 +6,7 @@ const sName = document.getElementById("sName")
 const sCourse = document.getElementById("sCourse")
 const sGrade = document.getElementById("sGrade")
 const addbtn = document.getElementById("addbtn")
-const cancelbtn = document.getElementById("cancelbtn")
+const updatebtn = document.getElementById("updatebtn")
 const spinner = document.getElementById("spinner")
 
 
