@@ -68,8 +68,8 @@ function onCreate(eve){
                         <td>${stdObj.sName}</td>
                         <td>${stdObj.sCourse}</td>
                         <td>${stdObj.sGrade}</td>
-                        <td><button class="btn btn-sm btn-outline-primary text-dark">EDIT</button>
-                            <button class="btn btn-sm btn-outline-danger text-dark">DELETE</button>
+                        <td><button onclick="onEdit(this)" class="btn btn-sm btn-outline-primary text-dark">EDIT</button>
+                            <button onclick="onDelete(this)" class="btn btn-sm btn-outline-danger text-dark">DELETE</button>
                         </td>
 
                         </tr>`
