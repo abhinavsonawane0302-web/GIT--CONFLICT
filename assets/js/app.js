@@ -22,8 +22,11 @@ const STUDENT_URL =`${BASE_URL}/students.json`
 
 
 
-// --- EDIT ---
+//edit & update
+
+
 function onEdit(ele){
+    spinner.classList.remove('d-none');
     let EDIT_ID = ele.closest('tr').id;
     let EDIT_URL = `${BASE_URL}/students/${EDIT_ID}.json`;
     localStorage.setItem('EDIT_ID', EDIT_ID);
@@ -34,32 +37,33 @@ function onEdit(ele){
     xhr.onload = function(){
         if(xhr.status >= 200 && xhr.status <= 299){
             let res = JSON.parse(xhr.response);
-            sName.value = res.name;
-            sCourse.value = res.course;
-            sGrade.value = res.grade;
+            sName.value = res.sName;
+            sCourse.value = res.sCourse;
+            sGrade.value = res.sGrade;
 
             addbtn.classList.add('d-none');
             editBtn.classList.remove('d-none');
 
             Swal.fire({
-              title: "Edit Mode",
-              text: "Data loded successfully",
-              icon: "info"
+              title: "You Can Edit Now",
+              icon: "info",
+              timer: 1000,
+              showConfirmButton: false
             });
         }
+        spinner.classList.add('d-none');
     }
 }
 
-// --- UPDATE ---
 function onUpdate(){
+    spinner.classList.remove('d-none');
     let update_Id = localStorage.getItem('EDIT_ID');
     let UPDATE_URL = `${BASE_URL}/students/${update_Id}.json`;
 
     let updateObj={
-        name: sName.value,
-        course: sCourse.value,
-        grade: sGrade.value,
-        id: update_Id
+        sName: sName.value,
+        sCourse: sCourse.value,
+        sGrade: sGrade.value
     };
 
     let xhr = new XMLHttpRequest();
@@ -68,10 +72,10 @@ function onUpdate(){
     xhr.onload = function(){
         if(xhr.status >= 200 && xhr.status <= 299){
             let res = JSON.parse(xhr.response);
-            let tds = document.getElementById(update_Id).children;
-            tds[1].innerHTML = res.name;
-            tds[2].innerHTML = res.course;
-            tds[3].innerHTML = res.grade;
+            let tr = document.getElementById(update_Id);
+            tr.children[0].innerHTML = res.sName;
+            tr.children[1].innerHTML = res.sCourse;
+            tr.children[2].innerHTML = res.sGrade;
 
             form.reset();
             addbtn.classList.remove('d-none');
@@ -81,9 +85,12 @@ function onUpdate(){
             Swal.fire({
               title: "Updated!",
               text: "Student updated successfully",
+               timer: 3000,
               icon: "success"
+             
             });
         }
+        spinner.classList.add('d-none');
     }
 }
 
