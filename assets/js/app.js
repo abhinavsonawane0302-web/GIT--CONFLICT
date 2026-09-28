@@ -71,7 +71,7 @@ function onDelete(ele){
     }).then((result) => {
         if (result.isConfirmed){
 
-            spinner.classList.remove('d-none')
+            showspinner()
             
             let DELETE_URL = `${BASE_URL}/students/${DELETE_ID}.json`;
 
@@ -84,15 +84,20 @@ function onDelete(ele){
                 if(xhr.status >= 200 && xhr.status <= 299){
                 let res = JSON.parse(xhr.response);
                 ele.closest('tr').remove();
+                
+                Swal.fire({
+                    text: `the student with id ${DELETE_ID} is Removed successfully !!!`,
+                    icon:"success",
+                    timer:2000
+                })
 
-                snackBar(`the student with id ${DELETE_ID} is Removed successfully !!!`, 'success')
             }else {
                 cl("Something went wrong while deleting !!!");
             }
-            spinner.classList.add('d-none');
+            hidespinner()
             }
                 xhr.onerror = function (){
-                     spinner.classList.add('d-none');
+                    hidespinner()
                  }
         }
     })
