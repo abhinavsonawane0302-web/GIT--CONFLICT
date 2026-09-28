@@ -94,12 +94,6 @@ function onUpdate(){
     }
 }
 
-<<<<<<< Updated upstream
-editBtn.addEventListener('click', onUpdate);
-
-
-
-=======
 form.addEventListener("submit", onCreate)
 
 
@@ -179,7 +173,6 @@ function onUpdate(){
 }
 
 updatebtn.addEventListener('click', onUpdate);
->>>>>>> Stashed changes
 
 function hidespinner() {
     spinner.classList.add("d-none")
